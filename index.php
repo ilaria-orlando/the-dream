@@ -18,7 +18,8 @@
         <!-- php calculation -->
             <?php
                 if(isset($_POST['submit'])){
-                    echo "it works!";
+                    $amount = $_POST['nzdollar'] * 0.58;
+                    echo "{$_POST['nzdollar']} New Zealand dollars is {$amount} Euro";
                 }
             ini_set('display_errors', '1');
             ini_set('display_startup_errors', '1');
