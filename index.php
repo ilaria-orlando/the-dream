@@ -2,6 +2,8 @@
 <html lang="EN">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <title>Currency calculator</title>
     </head>
     <body>
@@ -11,15 +13,31 @@
 
         <form method="POST" action="index.php">
             <label for="euro">Enter the amount:</label>
-            <input type="number" name="nzdollar">
+            <input type="number" name="exchange">
+            <select name="currency">
+                <option value="NZD">NZ dollar</option>
+                <option value="GPB">British pound</option>
+                <option value="USD">U.S. dollar</option>
+            </select>
             <input name="submit" type="submit" value="calculate">
         </form>
 
         <!-- php calculation -->
             <?php
+                //check if submit button is pressed
                 if(isset($_POST['submit'])){
-                    $amount = $_POST['nzdollar'] * 0.58;
-                    echo "{$_POST['nzdollar']} New Zealand dollars is {$amount} Euro";
+                    //take the amount entered and calculate it to euros
+                    if($_POST['currency'] == 'NZD'){
+                        $amount = $_POST['exchange'] * 0.58;
+                    }
+                    if($_POST['currency'] == 'GPB'){
+                        $amount = $_POST['exchange'] * 1.1057;
+                    }
+                    if($_POST['currency'] == 'USD'){
+                        $amount = $_POST['exchange'] * 0.8109;
+                    }
+                    //
+                    echo "{$_POST['exchange']} {$_POST['currency']} is {$amount} EUR";
                 }
             ini_set('display_errors', '1');
             ini_set('display_startup_errors', '1');
